@@ -42,13 +42,13 @@ async def task_status(_, message):
     if count == 0:
         currentTime = get_readable_time(time() - bot_start_time)
         free = get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)
-        msg = f"""〶 <b><i>No Active Bot Tasks!</i></b>
+        msg = f"""〶 <pre><b><i>No Active Bot Tasks!</i></b></pre>
 │
-┖ <b>NOTE</b> → <i>Each user can get status for his tasks by adding "me" or user_id like "1234xxx" after cmd: /{BotCommands.StatusCommand[0]} me or /{BotCommands.StatusCommand[1]} me</i>
+┖ <pre><b>NOTE</b></pre> → <pre><i>Each user can get status for his tasks by adding "me" or user_id like "1234xxx" after cmd: /{BotCommands.StatusCommand[0]} me or /{BotCommands.StatusCommand[1]} me</i></pre>
 
-⌬ <b><u>Bot Stats</u></b>
-┟ <b>CPU</b> → {cpu_percent()}% | <b>F</b> → {free} [{round(100 - disk_usage(DOWNLOAD_DIR).percent, 1)}%]
-┖ <b>RAM</b> → {virtual_memory().percent}% | <b>UP</b> → {currentTime}
+⌬ <pre><b><u>Bot Stats</u></b></pre>
+┟ <pre><b>CPU</b></pre> → {cpu_percent()}% | <b>F</b> → {free} [{round(100 - disk_usage(DOWNLOAD_DIR).percent, 1)}%]
+┖ <pre><b>RAM</b></pre> → {virtual_memory().percent}% | <b>UP</b> → {currentTime}
 """
         reply_message = await send_message(message, msg)
         await auto_delete_message(message, reply_message)
@@ -195,19 +195,19 @@ async def status_pages(_, query):
                 case _:
                     tasks["Download"] += 1
 
-        msg = f"""㊂ <b>Tasks Overview</b> :
+        msg = f"""㊂ <pre><b>Tasks Overview</b></pre> :
         
-┎ <b>Download:</b> {tasks["Download"]} | <b>Upload:</b> {tasks["Upload"]}
-┠ <b>Seed:</b> {tasks["Seed"]} | <b>Archive:</b> {tasks["Archive"]}
-┠ <b>Extract:</b> {tasks["Extract"]} | <b>Split:</b> {tasks["Split"]}
-┠ <b>QueueDL:</b> {tasks["QueueDl"]} | <b>QueueUP:</b> {tasks["QueueUp"]}
-┠ <b>Clone:</b> {tasks["Clone"]} | <b>CheckUp:</b> {tasks["CheckUp"]}
-┠ <b>Paused:</b> {tasks["Pause"]} | <b>SamVideo:</b> {tasks["SamVid"]}
-┞ <b>Convert:</b> {tasks["ConvertMedia"]} | <b>FFmpeg:</b> {tasks["FFmpeg"]}
+┎ <pre><b>Download:</b></pre> {tasks["Download"]} | <pre><b>Upload:</b></pre> {tasks["Upload"]}
+┠ <pre><b>Seed:</b></pre> {tasks["Seed"]} | <pre><b>Archive:</b></pre> {tasks["Archive"]}
+┠ <pre><b>Extract:</b></pre> {tasks["Extract"]} | <pre><b>Split:</b></pre> {tasks["Split"]}
+┠ <pre><b>QueueDL:</b></pre> {tasks["QueueDl"]} | <pre><b>QueueUP:</b></pre> {tasks["QueueUp"]}
+┠ <pre><b>Clone:</b></pre> {tasks["Clone"]} | <pre><b>CheckUp:</b></pre> {tasks["CheckUp"]}
+┠ <pre><b>Paused:</b></pre> {tasks["Pause"]} | <pre><b>SamVideo:</b></pre> {tasks["SamVid"]}
+┞ <pre><b>Convert:</b></pre> {tasks["ConvertMedia"]} | <pre><b>FFmpeg:</b></pre> {tasks["FFmpeg"]}
 │
-┟ <b>Total Download Speed:</b> {get_readable_file_size(dl_speed)}/s
-┠ <b>Total Upload Speed:</b> {get_readable_file_size(up_speed)}/s
-┖ <b>Total Seeding Speed:</b> {get_readable_file_size(seed_speed)}/s
+┟ <pre><b>Total Download Speed:</b></pre> {get_readable_file_size(dl_speed)}/s
+┠ <pre><b>Total Upload Speed:</b></pre> {get_readable_file_size(up_speed)}/s
+┖ <pre><b>Total Seeding Speed:</b></pre> {get_readable_file_size(seed_speed)}/s
 """
         button = ButtonMaker()
         button.data_button("Back", f"status {data[1]} ref")
