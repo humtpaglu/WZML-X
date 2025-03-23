@@ -221,15 +221,15 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
             tstatus = await task.status()
         else:
             tstatus = task.status()
-        msg += f"<b>{index + start_position}.</b> "
-        msg += f"<b><i>{escape(f'{task.name()}')}</i></b>"
+        msg += f"<pre><b>{index + start_position}.</b></pre> "
+        msg += f"<pre><b><i>{escape(f'{task.name()}')}</i></b></pre>"
         if task.listener.subname:
-            msg += f"\n┖ <b>Sub Name</b> → <i>{task.listener.subname}</i>"
+            msg += f"\n┖ <pre><b>Sub Name</b> → <i>{task.listener.subname}</i></pre>"
         elapsed = time() - task.listener.message.date.timestamp()
 
-        msg += f"\n\n<b>Task By {task.listener.message.from_user.mention(style='html')} </b> ( #ID{task.listener.message.from_user.id} )"
+        msg += f"\n\n<pre><b>Task By {task.listener.message.from_user.mention(style='html')} </b></pre> ( #ID{task.listener.message.from_user.id} )"
         if task.listener.is_super_chat:
-            msg += f" <i>[<a href='{task.listener.message.link}'>Link</a>]</i>"
+            msg += f" <pre><i>[<a href='{task.listener.message.link}'>Link</a>]</i></pre>"
 
         if (
             tstatus not in [MirrorStatus.STATUS_SEED, MirrorStatus.STATUS_QUEUEUP]
@@ -244,31 +244,31 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
             else:
                 subsize = ""
                 count = ""
-            msg += f"\n┠ <b>Processed</b> → <i>{task.processed_bytes()}{subsize} of {task.size()}</i>"
+            msg += f"\n┠ <pre><b>Processed</b> → <i>{task.processed_bytes()}{subsize} of {task.size()}</i></pre>"
             if count:
-                msg += f"\n┠ <b>Count:</b> → <b>{count}</b>"
-            msg += f"\n┠ <b>Status</b> → <b>{tstatus}</b>"
-            msg += f"\n┠ <b>Speed</b> → <i>{task.speed()}</i>"
-            msg += f"\n┠ <b>Time</b> → <i>{task.eta()} of {get_readable_time(elapsed + get_raw_time(task.eta()))} ( {get_readable_time(elapsed)} )</i>"
+                msg += f"\n┠ <pre><b>Count:</b> → <b>{count}</b></pre>"
+            msg += f"\n┠ <pre><b>Status</b> → <b>{tstatus}</b></pre>"
+            msg += f"\n┠ <pre><b>Speed</b> → <i>{task.speed()}</i></pre>"
+            msg += f"\n┠ <pre><b>Time</b> → <i>{task.eta()} of {get_readable_time(elapsed + get_raw_time(task.eta()))} ( {get_readable_time(elapsed)} )</i></pre>"
             if tstatus == MirrorStatus.STATUS_DOWNLOAD and (
                 task.listener.is_torrent or task.listener.is_qbit
             ):
                 try:
-                    msg += f"\n┠ <b>Seeders</b> → {task.seeders_num()} | <b>Leechers</b> → {task.leechers_num()}"
+                    msg += f"\n┠ <pre><b>Seeders</b></pre> → {task.seeders_num()} | <pre><b>Leechers</b></pre> → {task.leechers_num()}"
                 except Exception:
                     pass
             # TODO: Add Connected Peers
         elif tstatus == MirrorStatus.STATUS_SEED:
-            msg += f"\n┠ <b>Size</b> → <i>{task.size()}</i> | <b>Uploaded</b>  → <i>{task.uploaded_bytes()}</i>"
-            msg += f"\n┠ <b>Status</b> → <b>{tstatus}</b>"
-            msg += f"\n┠ <b>Speed</b> → <i>{task.seed_speed()}</i>"
-            msg += f"\n┠ <b>Ratio</b> → <i>{task.ratio()}</i>"
-            msg += f"\n┠ <b>Time</b> → <i>{task.seeding_time()}</i> | <b>Elapsed</b> → <i>{get_readable_time(elapsed)}</i>"
+            msg += f"\n┠ <pre><b>Size</b> → <i>{task.size()}</i></pre> | <pre><b>Uploaded</b></pre>  → <i>{task.uploaded_bytes()}</i>"
+            msg += f"\n┠ <pre><b>Status</b> → <b>{tstatus}</b></pre>"
+            msg += f"\n┠ <pre><b>Speed</b> → <i>{task.seed_speed()}</i></pre>"
+            msg += f"\n┠ <pre><b>Ratio</b> → <i>{task.ratio()}</i></pre>"
+            msg += f"\n┠ <pre><b>Time</b> → <i>{task.seeding_time()}</i></pre> | <pre><b>Elapsed</b></pre> → <i>{get_readable_time(elapsed)}</i>"
         else:
-            msg += f"\n┠ <b>Size</b> → <i>{task.size()}</i>"
-        msg += f"\n┠ <b>Engine</b> → <i>{task.engine}</i>"
-        msg += f"\n┠ <b>In Mode</b> → <i>{task.listener.mode[0]}</i>"
-        msg += f"\n┠ <b>Out Mode</b> → <i>{task.listener.mode[1]}</i>"
+            msg += f"\n┠ <pre><b>Size</b> → <i>{task.size()}</i></pre>"
+        msg += f"\n┠ <pre><b>Engine</b> → <i>{task.engine}</i></pre>"
+        msg += f"\n┠ <pre><b>In Mode</b> → <i>{task.listener.mode[0]}</i></pre>"
+        msg += f"\n┠ <pre><b>Out Mode</b> → <i>{task.listener.mode[1]}</i></pre>"
         # TODO: Add Bt Sel
         msg += f"\n<b>┖ Stop</b> → <i>/{BotCommands.CancelTaskCommand[1]}_{task.gid()}</i>\n\n"
 
