@@ -27,21 +27,21 @@ async def speedtest(_, message):
     speed_results.results.share()
     result = speed_results.results.dict()
     string_speed = f"""
-➲ <b><i>SPEEDTEST INFO</i></b>
-┠ <b>Upload:</b> <code>{get_readable_file_size(result['upload'] / 8)}/s</code>
-┠ <b>Download:</b>  <code>{get_readable_file_size(result['download'] / 8)}/s</code>
-┠ <b>Ping:</b> <code>{result['ping']} ms</code>
-┠ <b>Time:</b> <code>{result['timestamp']}</code>
-┠ <b>Data Sent:</b> <code>{get_readable_file_size(int(result['bytes_sent']))}</code>
-┖ <b>Data Received:</b> <code>{get_readable_file_size(int(result['bytes_received']))}</code>
+➲ <pre><b><i>SPEEDTEST INFO</i></b></pre>
+┠ <pre><b>Upload:</b></pre> <code>{get_readable_file_size(result['upload'] / 8)}/s</code>
+┠ <pre><b>Download:</b></pre>  <code>{get_readable_file_size(result['download'] / 8)}/s</code>
+┠ <pre><b>Ping:</b></pre> <code>{result['ping']} ms</code>
+┠ <pre><b>Time:</b></pre> <code>{result['timestamp']}</code>
+┠ <pre><b>Data Sent:</b></pre> <code>{get_readable_file_size(int(result['bytes_sent']))}</code>
+┖ <pre><b>Data Received:</b></pre> <code>{get_readable_file_size(int(result['bytes_received']))}</code>
 
-➲ <b><i>SPEEDTEST SERVER</i></b>
-┠ <b>Name:</b> <code>{result['server']['name']}</code>
-┠ <b>Country:</b> <code>{result['server']['country']}, {result['server']['cc']}</code>
-┠ <b>Sponsor:</b> <code>{result['server']['sponsor']}</code>
-┠ <b>Latency:</b> <code>{result['server']['latency']}</code>
-┠ <b>Latitude:</b> <code>{result['server']['lat']}</code>
-┖ <b>Longitude:</b> <code>{result['server']['lon']}</code>
+➲ <pre><b><i>SPEEDTEST SERVER</i></b></pre>
+┠ <pre><b>Name:</b></pre> <code>{result['server']['name']}</code>
+┠ <pre><b>Country:</b></pre> <code>{result['server']['country']}, {result['server']['cc']}</code>
+┠ <pre><b>Sponsor:</b></pre> <code>{result['server']['sponsor']}</code>
+┠ <pre><b>Latency:</b></pre> <code>{result['server']['latency']}</code>
+┠ <pre><b>Latitude:</b></pre> <code>{result['server']['lat']}</code>
+┖ <pre><b>Longitude:</b></pre> <code>{result['server']['lon']}</code>
 """
     try:
         await send_message(message, string_speed, photo=result["share"])
