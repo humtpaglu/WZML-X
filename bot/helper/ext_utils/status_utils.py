@@ -20,20 +20,20 @@ from ..telegram_helper.button_build import ButtonMaker
 SIZE_UNITS = ["B", "KB", "MB", "GB", "TB", "PB"]
 
 class MirrorStatus:
-    STATUS_UPLOAD = "Upload"
-    STATUS_DOWNLOAD = "Download"
-    STATUS_CLONE = "Clone"
-    STATUS_QUEUEDL = "QueueDl"
-    STATUS_QUEUEUP = "QueueUp"
-    STATUS_PAUSED = "Pause"
-    STATUS_ARCHIVE = "Archive"
-    STATUS_EXTRACT = "Extract"
-    STATUS_SPLIT = "Split"
-    STATUS_CHECK = "CheckUp"
-    STATUS_SEED = "Seed"
-    STATUS_SAMVID = "SamVid"
-    STATUS_CONVERT = "Convert"
-    STATUS_FFMPEG = "FFmpeg"
+    STATUS_UPLOAD = "Upload📤"
+    STATUS_DOWNLOAD = "Download📤"
+    STATUS_CLONE = "Clone🗂️"
+    STATUS_QUEUEDL = "QueueDl📍"
+    STATUS_QUEUEUP = "QueueUp⏳"
+    STATUS_PAUSED = "Pause📌"
+    STATUS_ARCHIVE = "Archive⌛"
+    STATUS_EXTRACT = "Extract🔊"
+    STATUS_SPLIT = "Split⚔️"
+    STATUS_CHECK = "CheckUp🔑"
+    STATUS_SEED = "Seed🔍"
+    STATUS_SAMVID = "SamVid📣"
+    STATUS_CONVERT = "Convert🧿"
+    STATUS_FFMPEG = "FFmpeg🪬"
 
 
 class EngineStatus:
@@ -278,12 +278,12 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
         else:
             msg = f"No Active {status} Tasks!\n\n"
 
-    msg += "⌬ <b><u>Bot Stats</u></b>"
+    msg += "⌬ <pre><b><u>Max Bot Stats</u></b></pre>"
     buttons = ButtonMaker()
     if not is_user:
         buttons.data_button("📜 TStats", f"status {sid} ov", position="header")
     if len(tasks) > STATUS_LIMIT:
-        msg += f"<b>Page:</b> {page_no}/{pages} | <b>Tasks:</b> {tasks_no} | <b>Step:</b> {page_step}\n"
+        msg += f"<pre><b>Page:</b></pre> {page_no}/{pages} | <pre><b>Tasks:</b></pre> {tasks_no} | <pre><b>Step:</b></pre> {page_step}\n"
         buttons.data_button("<<", f"status {sid} pre", position="header")
         buttons.data_button(">>", f"status {sid} nex", position="header")
         if tasks_no > 30:
@@ -295,6 +295,6 @@ async def get_readable_message(sid, is_user, page_no=1, status="All", page_step=
                 buttons.data_button(label, f"status {sid} st {status_value}")
     buttons.data_button("♻️ Refresh", f"status {sid} ref", position="header")
     button = buttons.build_menu(8)
-    msg += f"\n┟ <b>CPU</b> → {cpu_percent()}% | <b>F</b> → {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)} [{round(100 - disk_usage(DOWNLOAD_DIR).percent, 1)}%]"
-    msg += f"\n┖ <b>RAM</b> → {virtual_memory().percent}% | <b>UP</b> → {get_readable_time(time() - bot_start_time)}"
+    msg += f"\n┟ <pre><b>CPU</b></pre> → {cpu_percent()}% | <pre><b>F</b></pre> → {get_readable_file_size(disk_usage(DOWNLOAD_DIR).free)} [{round(100 - disk_usage(DOWNLOAD_DIR).percent, 1)}%]"
+    msg += f"\n┖ <pre><b>RAM</b></pre> → {virtual_memory().percent}% | <pre><b>UP</b></pre> → {get_readable_time(time() - bot_start_time)}"
     return msg, button
