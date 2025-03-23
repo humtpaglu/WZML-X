@@ -217,13 +217,13 @@ async def get_user_settings(from_user, stype="main"):
             )
         buttons.data_button("Close", f"userset {user_id} close", position="footer")
 
-        text = f"""⌬ <b>User Settings :</b>
+        text = f"""⌬ <pre><b>User Settings :</b></pre>
 │
-┟ <b>Name</b> → {user_name}
-┠ <b>UserID</b> → #ID{user_id}
-┠ <b>Username</b> → @{from_user.username}
-┠ <b>Telegram DC</b> → {from_user.dc_id}
-┖ <b>Telegram Lang</b> → {Language.get(lc).display_name() if (lc := from_user.language_code) else "N/A"}"""
+┟ <pre><b>Name</b></pre> → {user_name}
+┠ <pre><b>UserID</b></pre> → #ID{user_id}
+┠ <pre><b>Username</b></pre> → @{from_user.username}
+┠ <pre><b>Telegram DC</b></pre> → {from_user.dc_id}
+┖ <pre><b>Telegram Lang</b></pre> → {Language.get(lc).display_name() if (lc := from_user.language_code) else "N/A"}"""
 
         btns = buttons.build_menu(2)
 
@@ -250,11 +250,11 @@ async def get_user_settings(from_user, stype="main"):
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(1)
 
-        text = f"""⌬ <b>General Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>General Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┠ <b>Default Upload Package</b> → <b>{du}</b>
-┖ <b>Default Usage Mode</b> → <b>{tr}'s</b> token/config
+┠ <pre><b>Default Upload Package</b></pre> → <b>{du}</b>
+┖ <pre><b>Default Usage Mode</b></pre> → <b>{tr}'s</b> token/config
 """
 
     elif stype == "leech":
@@ -390,8 +390,8 @@ async def get_user_settings(from_user, stype="main"):
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(2)
 
-        text = f"""⌬ <b>Leech Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>Leech Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
 ┠ Leech Type → <b>{ltype}</b>
 ┠ Custom Thumbnail → <b>{thumbmsg}</b>
@@ -433,12 +433,12 @@ async def get_user_settings(from_user, stype="main"):
         else:
             rcflags = "None"
 
-        text = f"""⌬ <b>RClone Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>RClone Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┠ <b>Rclone Config</b> → <b>{rccmsg}</b>
-┠ <b>Rclone Flags</b> → <code>{rcflags}</code>
-┖ <b>Rclone Path</b> → <code>{rccpath}</code>"""
+┠ <pre><b>Rclone Config</b></pre> → <b>{rccmsg}</b>
+┠ <pre><b>Rclone Flags</b></pre> → <code>{rcflags}</code>
+┖ <pre><b>Rclone Path</b></pre> → <code>{rccpath}</code>"""
 
     elif stype == "gdrive":
         buttons.data_button("token.pickle", f"userset {user_id} menu TOKEN_PICKLE")
@@ -473,13 +473,13 @@ async def get_user_settings(from_user, stype="main"):
         index = user_dict["INDEX_URL"] if user_dict.get("INDEX_URL", False) else "None"
         btns = buttons.build_menu(2)
 
-        text = f"""⌬ <b>GDrive Tools Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>GDrive Tools Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┠ <b>Gdrive Token</b> → <b>{tokenmsg}</b>
-┠ <b>Gdrive ID</b> → <code>{gdrive_id}</code>
-┠ <b>Index URL</b> → <code>{index}</code>
-┖ <b>Stop Duplicate</b> → <b>{sd_msg}</b>"""
+┠ <pre><b>Gdrive Token</b></pre> → <b>{tokenmsg}</b>
+┠ <pre><b>Gdrive ID</b></pre> → <code>{gdrive_id}</code>
+┠ <pre><b>Index URL</b></pre> → <code>{index}</code>
+┖ <pre><b>Stop Duplicate</b></pre> → <b>{sd_msg}</b>"""
     elif stype == "mirror":
         buttons.data_button("RClone Tools", f"userset {user_id} rclone")
         rccmsg = "Exists" if await aiopath.exists(rclone_conf) else "Not Exists"
@@ -513,15 +513,15 @@ async def get_user_settings(from_user, stype="main"):
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(1)
 
-        text = f"""⌬ <b>Mirror Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>Mirror Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┠ <b>Rclone Config</b> → <b>{rccmsg}</b>
-┠ <b>Rclone Path</b> → <code>{rccpath}</code>
-┠ <b>Gdrive Token</b> → <b>{tokenmsg}</b>
-┠ <b>Gdrive ID</b> → <code>{gdrive_id}</code>
-┠ <b>Index Link</b> → <code>{index}</code>
-┖ <b>Stop Duplicate</b> → <b>{sd_msg}</b>
+┠ <pre><b>Rclone Config</b></pre> → <b>{rccmsg}</b>
+┠ <pre><b>Rclone Path</b></pre> → <code>{rccpath}</code>
+┠ <pre><b>Gdrive Token</b></pre> → <b>{tokenmsg}</b>
+┠ <pre><b>Gdrive ID</b></pre> → <code>{gdrive_id}</code>
+┠ <pre><b>Index Link</b></pre> → <code>{index}</code>
+┖ <pre><b>Stop Duplicate</b></pre> → <b>{sd_msg}</b>
 """
 
     elif stype == "ffset":
@@ -545,10 +545,10 @@ async def get_user_settings(from_user, stype="main"):
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(2)
 
-        text = f"""⌬ <b>FF Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>FF Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┖ <b>FFmpeg Commands</b> → {ffc}"""
+┖ <pre><b>FFmpeg Commands</b></pre> → {ffc}"""
 
     elif stype == "advanced":
         buttons.data_button(
@@ -590,13 +590,13 @@ async def get_user_settings(from_user, stype="main"):
         buttons.data_button("Close", f"userset {user_id} close", "footer")
         btns = buttons.build_menu(1)
 
-        text = f"""⌬ <b>Advanced Settings :</b>
-┟ <b>Name</b> → {user_name}
+        text = f"""⌬ <pre><b>Advanced Settings :</b></pre>
+┟ <pre><b>Name</b></pre> → {user_name}
 ┃
-┠ <b>Name Swaps</b> → {ns_msg}
-┠ <b>Excluded Extensions</b> → <code>{ex_ex}</code>
-┠ <b>Upload Paths</b> → <b>{upload_paths}</b>
-┖ <b>YT-DLP Options</b> → <code>{ytopt}</code>"""
+┠ <pre><b>Name Swaps</b></pre> → {ns_msg}
+┠ <pre><b>Excluded Extensions</b></pre> → <code>{ex_ex}</code>
+┠ <pre><b>Upload Paths</b></pre> → <pre><b>{upload_paths}</b></pre>
+┖ <pre><b>YT-DLP Options</b></pre> → <code>{ytopt}</code>"""
 
     return text, btns
 
@@ -762,14 +762,14 @@ async def get_menu(option, message, user_id):
         val = "<b>Exists</b>"
     elif option == "LEECH_SPLIT_SIZE":
         val = get_readable_file_size(val)
-    text = f"""⌬ <b><u>Menu Settings :</u></b>
+    text = f"""⌬ <pre><b><u>Menu Settings :</u></b></pre>
 │
-┟ <b>Option</b> → {option}
+┟ <pre><b>Option</b></pre> → {option}
 ┃
-┠ <b>Option's Value</b> → {val if val else "<b>Not Exists</b>"}
+┠ <pre><b>Option's Value</b></pre> → {val if val else "<b>Not Exists</b>"}
 ┃
-┠ <b>Default Input Type</b> → {user_settings_text[option][0]}
-┖ <b>Description</b> → {user_settings_text[option][1]}
+┠ <pre><b>Default Input Type</b></pre> → {user_settings_text[option][0]}
+┖ <pre><b>Description</b></pre> → {user_settings_text[option][1]}
 """
     await edit_message(message, text, buttons.build_menu(2))
 
